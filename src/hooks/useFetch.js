@@ -9,7 +9,7 @@ const DEFAULT_OPTIONS = {
 @params query: string
 @returns { data, isPending, error }
 */
-export default function useFetch(url, query = {}, options = DEFAULT_OPTIONS) {
+export default function useFetch(url, query = null, options = DEFAULT_OPTIONS) {
     const [data, setData] = useState(null)
     const [isPending, setIsPending] = useState(true)
     const [error, setError] = useState(null)
@@ -17,12 +17,15 @@ export default function useFetch(url, query = {}, options = DEFAULT_OPTIONS) {
 
     useEffect(() => {
         const fetchData = () => {
-            const stringQuerry = "?" + new URLSearchParams(query).toString()
+            let stringQuerry = ''
+            if (query !== null) {
+                stringQuerry = "?" + new URLSearchParams(query).toString()
+            }
             setIsPending(true)
             fetch(process.env.REACT_APP_TARGET + url + stringQuerry, { ...options })
                 .then(res => {
                     if (!res.ok) {
-
+                        console.log(res);
                         throw Error('Could not fetch the data for that resource')
                     }
                     return res.json()
@@ -32,6 +35,7 @@ export default function useFetch(url, query = {}, options = DEFAULT_OPTIONS) {
                     setError(null)
                     setIsPending(false)
                 }).catch(err => {
+                    console.log(err);
                     setError(err.message)
                     setIsPending(false)
                 })
