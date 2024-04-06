@@ -1,24 +1,19 @@
 
 import { useState } from "react"
 
-export default function Map() {
+export default function Map({ setSelected }) {
 
     const [pos, setPos] = useState({ x: 0, y: 0, scale: 1, lastX: 0, lastY: 0 });
 
-    const onScroll = (e) => {
-        const delta = e.deltaY;
-        const scaleChange = delta > 0 ? -0.1 : 0.1;
-        const newScale = pos.scale + scaleChange;
-
-        if (newScale < 1 || newScale > 5) {
-            return;
+    const onWheel = (e) => {
+        console.log(e);
+        const scale = pos.scale - e.deltaY * 0.01;
+        if (scale < 1) {
+            setPos({ ...pos, scale: 1 });
+        } else {
+            setPos({ ...pos, scale });
         }
-
-        const newPosX = pos.x - e.clientX * scaleChange;
-        const newPosY = pos.y - e.clientY * scaleChange;
-
-        setPos({ x: newPosX, y: newPosY, scale: newScale, lastX: pos.lastX, lastY: pos.lastY });
-    };
+    }
 
     const onDrag = (e) => {
         let lastX = pos.lastX;
@@ -54,15 +49,61 @@ export default function Map() {
     }
 
     return (
-        <div className="select-none  h-[90vh] overflow-hidden" onWheelCapture={onScroll} onDrag={onDrag} onDragEnd={onDragEnd}>
+        <div className="select-none  max-h-[80vh] overflow-hidden" onScroll={onWheel} onDrag={onDrag} onDragEnd={onDragEnd}>
             <img
-                src="/map.png"
+                src="/1.svg"
                 alt="map"
                 style={{
                     transformOrigin: "0 0",
                     transform: `scale(${pos.scale}) translate(${pos.x}px, ${pos.y}px)`,
                 }}
-                className=" "
+                className="map "
+            />
+            <img
+                src="/2.svg"
+                alt="map"
+                style={{
+                    transformOrigin: "0 0",
+                    transform: `scale(${pos.scale}) translate(${pos.x}px, ${pos.y}px)`,
+                }}
+                className="map "
+            />
+            <img
+                src="/3.svg"
+                alt="map"
+                style={{
+                    transformOrigin: "0 0",
+                    transform: `scale(${pos.scale}) translate(${pos.x}px, ${pos.y}px)`,
+                }}
+                className="map "
+            />
+            <img
+                src="/4.svg"
+                alt="map"
+                style={{
+                    transformOrigin: "0 0",
+                    transform: `scale(${pos.scale}) translate(${pos.x}px, ${pos.y}px)`,
+                }}
+                className="map "
+            />
+            <img
+                src="/5.svg"
+                alt="map"
+                style={{
+                    transformOrigin: "0 0",
+                    transform: `scale(${pos.scale}) translate(${pos.x}px, ${pos.y}px)`,
+                }}
+                className="map "
+            />
+            <img
+                id="6"
+                src="/6.svg"
+                alt="map"
+                style={{
+                    transformOrigin: "0 0",
+                    transform: `scale(${pos.scale}) translate(${pos.x}px, ${pos.y}px)`,
+                }}
+                className="map "
             />
         </div>
     )

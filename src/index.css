@@ -12,7 +12,7 @@ html, body, #root { height: 100%; }
 }
 
 body{
-  @apply bg-background 
+  @apply bg-background max-w-[100vw] overflow-x-hidden
 }
 
 button:disabled{
@@ -36,8 +36,19 @@ button{
     border-color: red;
 }
 
+.map{
+  
+  @apply max-h-[90vh] object-cover absolute top-0 left-0 hover:bg-red-300/50
+}
+
+
+
 .error{
     @apply bg-red-200 text-red-600 py-2 px-3 border border-red-600
+}
+
+.selector > h2{
+    @apply text-2xl text-accent border rounded-lg border-accent w-28 text-center cursor-pointer hover:bg-accent hover:text-white duration-200
 }
 
 input[type="text"], input[type="number"],input[type="datetime-local"] input[type="email"], input[type="password"], input[type="date"], input[type="time"], input[type="search"], input[type="tel"], input[type="url"], input[type="color"],  input[type="file"], input[type="checkbox"], input[type="radio"], select, textarea{

@@ -2,26 +2,24 @@ import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const Navbar = () => {
+const Navbar = ({ model, setModel }) => {
     const { logout } = useLogout()
     const { user } = useAuthContext()
     return (
         <div className='flex justify-center h-20 w-full z-50'>
             <nav className=" w-full h-20 fixed bg-white z-40" >
                 <div className='content  flex justify-between items-center h-20 '>
-                    <Link to={"/"} className="text-dark text-xl">
+                    <Link to={"/"} className="text-dark text-xl flex items-center">
+                        <div className="size-10 bg-accent rounded-full"></div>
+                        <h1 className="ml-4 uppercase text-accent font-bold text-2xl">Logo</h1>
                         {/* <img src="/logo_nav.png" alt="logo" className=' w-20 ' /> */}
-                        Finito!
                     </Link>
-                    <div className="flex uppercase text-lg justify-around h-full items-center text-dark child:mx-4 child-hover:text-primary child:duration-300 child:cursor-pointer">
-                        <Link to="#sluzby">služby</Link>
-                        <Link to={"#onas"}>o nás</Link>
-                        <Link to={"#foto"}>foto</Link>
-                        <Link to={"#kontakt"}>kontakt</Link>
-                        <div className="btn ">
-                            {user ? <div onClick={logout}>Log out</div> : <Link to={"/signup"}>Sign up</Link>}
-                        </div>
+                    <div className="flex selector justify-between  w-1/3 min-w-[400px] ">
+                        <h2 onClick={() => setModel(0)} className={`${model === 0 ? "bg-accent !text-white" : ""}`}>Good</h2>
+                        <h2 onClick={() => setModel(1)} className={`${model === 1 ? "bg-accent !text-white" : ""}`}>Medium</h2>
+                        <h2 onClick={() => setModel(2)} className={`${model === 2 ? "bg-accent !text-white" : ""}`}>Bad</h2>
                     </div>
+                    <div></div>
                 </div>
             </nav >
         </div >

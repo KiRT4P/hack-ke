@@ -32,10 +32,11 @@ export default function useFetch(url, query = null, options = DEFAULT_OPTIONS) {
 
                 }).then(data => {
                     setData(data)
+                    console.log({ "data": data, "url": url });
                     setError(null)
                     setIsPending(false)
                 }).catch(err => {
-                    console.log(err);
+                    // console.log(err);
                     setError(err.message)
                     setIsPending(false)
                 })

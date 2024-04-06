@@ -115,13 +115,12 @@ export default function AddEvent() {
                 <div className="flex flex-col ">
                     <input type="text" placeholder="name" value={eventForm.name} onChange={e => setEventForm({ ...eventForm, name: e.target.value })} />
                     <textarea name="" id="" cols="30" rows="10" placeholder="description" value={eventForm.description} onChange={e => setEventForm({ ...eventForm, description: e.target.value })}></textarea>
-                    <select name="" id="" onChange={e => setEventForm({ ...eventForm, point: e.target.value })}>
+                    {pointIsLoading && <select name="" id="" onChange={e => setEventForm({ ...eventForm, point: e.target.value })}>
                         <option value="">Select Point</option>
                         {point && point.map((point, i) => (
                             <option key={i} value={point.id}>{point.name}</option>
                         ))}
-                    </select>
-                    {/* <input className='w-full bg-primary border-2 border-secondary rounded-lg p-2 my-2' type="date" value={new Date(eventForm.timestamp * 1000).toISOString().slice(0, -14)} onChange={e => setEventForm({ ...eventForm, timestamp: new Date(e.target.value).getTime() / 1000 })} /> */}
+                    </select>}
                     <button>Submit</button>
                 </div>
 

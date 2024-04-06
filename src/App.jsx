@@ -6,7 +6,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import AddEvent from './pages/AddEvent'
 
-import Navbar from "./components/Navbar"
+
 // import Footer from './components/Footer';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter >
       <main className='min-h-screen  ' >
-        {/* <Navbar /> */}
+
         <Routes className=''>
           <Route index element={<Home />} />
           <Route path="login" element={!user ? <Login /> : <Navigate to={"/home"} />} />
