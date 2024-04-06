@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
-import { useLogout } from "../hooks/useLogout";
-import { useAuthContext } from "../hooks/useAuthContext";
 
 const Navbar = ({ model, setModel }) => {
-    const { logout } = useLogout()
-    const { user } = useAuthContext()
     return (
         <div className='flex justify-center h-20 w-full z-50'>
             <nav className=" w-full h-20 fixed bg-white z-40" >

@@ -1,16 +1,12 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { useAuthContext } from './hooks/useAuthContext'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 //pages
 import Home from "./pages/Home"
-import Login from './pages/Login'
-import Signup from './pages/Signup'
 import AddEvent from './pages/AddEvent'
 
 
 // import Footer from './components/Footer';
 
 function App() {
-  const { user } = useAuthContext()
 
   return (
     <BrowserRouter >
@@ -18,8 +14,6 @@ function App() {
 
         <Routes className=''>
           <Route index element={<Home />} />
-          <Route path="login" element={!user ? <Login /> : <Navigate to={"/home"} />} />
-          <Route path="signup" element={!user ? <Signup /> : <Navigate to={"/home"} />} />
           <Route path="/add" element={<AddEvent />} />
         </Routes>
         {/* <Footer className={""} /> */}
