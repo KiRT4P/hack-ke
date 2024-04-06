@@ -3,12 +3,12 @@
 	 viewBox="0 0 1440 950"  xml:space="preserve" >
 
 <style type="text/css">
-	.st0{display:none;pointer-events:none;}
-	.st1{display:inline;pointer-events:none;}
-	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#BCBCBC;stroke-width:0.75;stroke-miterlimit:1.2402;pointer-events:none;}
-	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#BCBCBC;stroke-width:2;stroke-miterlimit:1.2402;pointer-events:none;}
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#BCBCBC;stroke-width:0.75;stroke-miterlimit:1.2402;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#BCBCBC;stroke-width:2;stroke-miterlimit:1.2402;}
 	.st4{fill:#BCBCBC;}
-	.st5{display:inline;fill:#BCBCBC;pointer-events:none;}
+	.st5{display:inline;fill:#BCBCBC;}
 </style>
 <g id="Layer_1" class="st0" >
 	<g class="st1">

@@ -97,7 +97,7 @@ export default function Map({ setSelected }) {
             />
             <img
                 id="6"
-                src="/6.svg"
+                src="/xx.svg"
                 alt="map"
                 style={{
                     transformOrigin: "0 0",
