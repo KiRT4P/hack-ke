@@ -58,7 +58,7 @@ export default function AddArea() {
                         <option value="SSP2-4.5">SSP2-4.5</option>
                         <option value="SSP5-8.5">SSP5-8.5</option>
                     </select>
-                    <input className='w-full bg-primary border-2 border-secondary rounded-lg p-2 my-2' type="date" value={new Date(areaForm.timestamp * 1000).toISOString().slice(0, -14)} onChange={e => setsetAreaForm({ ...areaForm, timestamp: new Date(e.target.value).getTime() / 1000 })} />
+                    <input className='w-full bg-primary border-2 border-secondary rounded-lg p-2 my-2' type="date" value={new Date(areaForm.timestamp * 1000).toISOString().slice(0, -14)} onChange={e => setAreaForm({ ...areaForm, timestamp: new Date(e.target.value).getTime() / 1000 })} />
                     <button>Submit</button>
                 </div>
 

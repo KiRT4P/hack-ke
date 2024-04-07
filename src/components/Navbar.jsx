@@ -6,9 +6,9 @@ const Navbar = ({ model, setModel, setTypeM, narrow, bar = true }) => {
             <nav className={` w-full h-20 fixed  z- ${bar ? " bg-white " : " "}`} >
                 <div className={` flex justify-between items-center h-20 content `}>
                     <Link to={"/"} className="text-dark text-xl flex items-center">
-                        <img src="./TerraTherm_Logo1 1.png" alt="" />
+                        <img src="./TerraTherm_Logo1.png" alt="" className="h-8" />
                     </Link>
-                    {bar && <div className={`flex selector justify-between  w-1/4 min-w-[400px] child:!w-24 child:!text-base duration-500 relative ${narrow ? "  -left-16 " : "-left-0"} `}>
+                    {bar && <div className={`flex selector justify-between  w-1/5 min-w-[350px] child:!w-24 child:!text-base duration-500 relative ${narrow ? "  -left-16 " : "-left-0"} `}>
                         <h2 onClick={() => setModel(0)} className={`${model === 0 ? "bg-accent !text-white" : ""}`}>Good</h2>
                         <h2 onClick={() => setModel(1)} className={`${model === 1 ? "bg-accent !text-white" : ""}`}>Medium</h2>
                         <h2 onClick={() => setModel(2)} className={`${model === 2 ? "bg-accent !text-white" : ""}`}>Bad</h2>

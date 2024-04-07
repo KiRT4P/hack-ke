@@ -48,14 +48,14 @@ export default function Info({ selected, setSelected = () => { }, setTypeM, type
                 <div>
                     {typeM === 0 &&
                         <div className="flex flex-col absolute top-10 left-10 child:mb-8 text-left h-[90%]">
-                            <h1 className="text-3xl text-accent">How does it work?</h1>
+                            <h1 className="text-2xl text-accent">How does it work?</h1>
                             <p className='text-sm text-gray-400 max-w-[23vw]'>
                                 TerraTherm is a project that visualizes captured climate data from the past and tries to display the predicted development of the upcoming climate change.
                             </p>
                             <p className='text-sm text-gray-400 max-w-[23vw]'>
                                 By clicking on the <span className='text-accent'>Good</span>  / <span className='text-accent'>Medium</span> / <span className='text-accent'>Bad</span> buttons, you can follow the expected development, due to the favorable circumstances.
                             </p>
-                            <h1 className="text-3xl text-accent mt-4 ">Move the slider!</h1>
+                            <h1 className="text-2xl text-accent mt-4 ">Move the slider!</h1>
                             <p className='text-sm text-gray-400 max-w-[23vw]'>
                                 By clicking on the slider an moving it you will be able to see data or predictions for each year displayed.
                             </p>
@@ -67,9 +67,9 @@ export default function Info({ selected, setSelected = () => { }, setTypeM, type
                     }
 
                     {typeM === 1 && <div className="flex flex-col absolute top-40 right-20 child:mb-4 ">
-                        <Link to="/?initial=false" className="text-3xl text-accent">Home</Link>
-                        <h1 className="text-3xl text-accent cursor-pointer" onClick={e => { setTypeM(0) }}>How does it work?</h1>
-                        <Link to="/about" className="text-3xl text-accent">About</Link>
+                        <Link to="/?initial=false" className="text-2xl text-accent">Home</Link>
+                        <h1 className="text-2xl text-accent cursor-pointer" onClick={e => { setTypeM(0) }}>How does it work?</h1>
+                        <Link to="/about" className="text-2xl text-accent">About</Link>
                     </div>}
 
                 </div>

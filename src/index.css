@@ -20,10 +20,14 @@ button:disabled{
 }
 
 .content{
-  @apply w-[80vw] mx-auto max-w-usable
+  @apply w-[87vw] mx-auto 
 }
 .btn{
   @apply text-accent border-2 py-2 px-8 border-accent rounded-lg hover:bg-accent  hover:!text-white w-max mx-auto
+}
+
+p{
+  @apply !text-[#BCBCBC]
 }
 
 button{
@@ -31,7 +35,7 @@ button{
 }
 
 .selector > h2{
-    @apply text-2xl text-accent border rounded-lg border-accent w-28 text-center cursor-pointer hover:bg-accent hover:text-white duration-200
+    @apply text-2xl text-accent border rounded-md border-accent w-28 text-center cursor-pointer hover:bg-accent hover:text-white duration-200
 }
 
 input[type="text"], input[type="number"],input[type="datetime-local"] input[type="email"], input[type="password"], input[type="date"], input[type="time"], input[type="search"], input[type="tel"], input[type="url"], input[type="color"],  input[type="file"], input[type="checkbox"], input[type="radio"], select, textarea{
