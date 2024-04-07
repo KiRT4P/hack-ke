@@ -2,8 +2,11 @@ import { IconX } from '@tabler/icons-react';
 
 export default function Info({ selected, setSelected }) {
     console.log(selected);
+    ;
+
     return (
-        <div className={`absolute   top-0 bg-white p-12 w-[30vw] h-screen z-50 rounded-l-3xl shadow-2xl text-center duration-500 ${!!selected ? "right-0" : "-right-[30vw]"} `}>
+        <div id='test' className={`absolute   top-0 bg-white p-12 w-[30vw] h-screen z-50 rounded-l-3xl shadow-2xl text-center duration-500 ${!!selected ? "right-0" : "-right-[30vw]"} `}>
+
             <p className="absolute right-5 top-5 cursor-pointer" onClick={e => setTimeout(() => setSelected(null))}>
                 <IconX color='#80ed99' size={"2rem"} />
             </p>

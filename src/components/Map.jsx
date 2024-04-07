@@ -8,6 +8,7 @@ export default function Map({ setSelected, model, selected }) {
     const [mouse, setMouse] = useState({ x: 0, y: 0 });
     const models = ["SSP1-2.6", "SSP2-4.5", "SSP5-8.5"]
     const time = 1712444995
+    console.log(1482, window.innerHeight, 1482 / window.innerWidth);
     const { data: event } = useFetch("/api/event", { model: models[model], time })
     return (
         <div id="parent" className={`select-none relative  `}
@@ -24,7 +25,7 @@ export default function Map({ setSelected, model, selected }) {
         // }}
         >
             {event && event.map((e, i) => (
-                <div onClick={x => { setSelected({ ...e, point: true }); x.stopPropagation() }} key={i} className="POINT duration-500 absolute z-50 hover:scale-125 cursor-pointer " style={{ left: (e.x - 8 + (selected ? 0 : 256)) + "px", top: (e.y - 23) + "px" }}>
+                <div onClick={x => { setSelected({ ...e, point: true }); x.stopPropagation() }} key={i} className="POINT duration-500 absolute z-50 hover:scale-125 cursor-pointer " style={{ left: (e.x - 8 + (selected ? 0 : 256)) + (window.outerWidth / 1536) + "px", top: (e.y) * (window.outerHeight / 816) - 23 + "px" }}>
                     <IconMapPinFilled color="#80ed99" className="text-xl" />
                 </div>
             ))}
@@ -32,7 +33,8 @@ export default function Map({ setSelected, model, selected }) {
             <div className={`absolute duration-500 `} style={{ left: 200 - (selected ? 0 : 256), top: 200 }}>
                 {mouse.x} {mouse.y}
             </div>
-
+            <p className="absolute">{1482} {window.outerWidth}, {window.outerWidth / 1536}</p>
+            <p className="absolute top-5">{816} {window.outerHeight}, {window.outerHeight / 816}</p>
             <div className={`relative  -top-20 SVGPARENT duration-500 ${selected ? "-left-64" : "-left-0"}`}>
 
                 <svg className={`${partID == 1 ? "  !fill-accent   " : ""}`} id="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 980" >
