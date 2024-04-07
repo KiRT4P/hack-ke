@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from "./pages/Home"
 import AddEvent from './pages/AddEvent'
 import About from './pages/About';
+import AddArea from './pages/AddArea';
 
 
-// import Footer from './components/Footer';
 
 function App() {
 
@@ -16,6 +16,7 @@ function App() {
         <Routes className=''>
           <Route index element={<Home />} />
           <Route path="/add" element={<AddEvent />} />
+          <Route path='/addArea' element={<AddArea />} />
           <Route path="/about" element={<About />} />
         </Routes>
         {/* <Footer className={""} /> */}

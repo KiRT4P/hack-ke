@@ -83,6 +83,7 @@ export default function AddEvent() {
 
         }).then(data => {
             console.log(data);
+            alert('success')
             setEventForm({ name: '', description: '', point: '', timestamp: new Date().getTime() / 1000 })
         }).catch(err => {
             alert(err.message)
