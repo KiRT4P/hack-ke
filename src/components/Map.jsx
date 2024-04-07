@@ -2,46 +2,43 @@
 import { useEffect, useState } from "react"
 import useFetch from "../hooks/useFetch"
 import { IconMapPinFilled } from "@tabler/icons-react"
-export default function Map({ setSelected, model, selected, setTypeM, typeM, event }) {
+export default function Map({ setSelected, model, setTypeM, typeM, event }) {
 
     const [partID, setpartID] = useState("0");
     const [mouse, setMouse] = useState({ x: 0, y: 0 });
     const models = ["SSP1-2.6", "SSP2-4.5", "SSP5-8.5"]
-    const time = 1712444995
-    console.log(1482, window.innerHeight, 1482 / window.innerWidth);
-    const { data: event } = useFetch("/api/event", { model: models[model], time })
 
-    const calculateColor = (d) => { 
-      // Map the temperature range [-5, 15] to the color range [light blue, bright red]
-      const r = mapRange(d.temp, -2, 35, 144, 0);
-      const g = mapRange(d.temp, -2, 35, 238, 100);
-      const b = mapRange(d.temp, -2, 35, 144, 0);
-      
-    //   setColor(`rgb(${r}, ${g}, ${b})`);
-    document.getElementById(d.area_id).children[0].style.fill = `rgb(${r}, ${g}, ${b})`;
-    console.log(d.area_id);
-  };
-    
+    const calculateColor = (d) => {
+        // Map the temperature range [-5, 15] to the color range [light blue, bright red]
+        const r = mapRange(d.temp, -2, 35, 144, 0);
+        const g = mapRange(d.temp, -2, 35, 238, 100);
+        const b = mapRange(d.temp, -2, 35, 144, 0);
+
+        //   setColor(`rgb(${r}, ${g}, ${b})`);
+        document.getElementById(d.area_id).children[0].style.fill = `rgb(${r}, ${g}, ${b})`;
+        console.log(d.area_id);
+    };
+
     // Helper function to map a value from one range to another
     const mapRange = (value, low1, high1, low2, high2) => {
         return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
     };
-    
+
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_TARGET + "/api/avrg_temps?model=" +  models[model] + '&year=' + 2020)
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(d => {
-                calculateColor(d);
+        fetch(process.env.REACT_APP_TARGET + "/api/avrg_temps?model=" + models[model] + '&year=' + 2020)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(d => {
+                    calculateColor(d);
+                })
+                // setTemperature(data);
+                // if(document.getElementById(data[0].area_id)){
+                //     document.getElementById(data[0].area_id).children[0].style.fill = "#000";
+                //     console.log(document.getElementById(data.area_id).children[0]);
+                // }
             })
-            // setTemperature(data);
-            // if(document.getElementById(data[0].area_id)){
-            //     document.getElementById(data[0].area_id).children[0].style.fill = "#000";
-            //     console.log(document.getElementById(data.area_id).children[0]);
-            // }
-        })
-        .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error:', error));
     }, [model]);
 
     return (
@@ -53,9 +50,9 @@ export default function Map({ setSelected, model, selected, setTypeM, typeM, eve
                 setpartID(e.target.parentElement.parentElement.id)
 
             }}
-            // onMouseMove={e => {
-            //     setMouse({ x: e.clientX, y: e.clientY - 80 });
-            // }}
+        // onMouseMove={e => {
+        //     setMouse({ x: e.clientX, y: e.clientY - 80 });
+        // }}
         >
             {event && event.map((e, i) => (
                 <div onClick={x => { setSelected({ ...e, point: true }); setTypeM(3); x.stopPropagation() }} key={i} className="POINT duration-500 absolute z-50 hover:scale-125 cursor-pointer " style={{ left: (e.x - 20 + (typeM > -1 ? 0 : 256)) + (window.outerWidth / 1536) + "px", top: (e.y) * (window.outerHeight / 816) - 40 + "px" }}>
