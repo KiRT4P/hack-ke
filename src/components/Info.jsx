@@ -1,21 +1,19 @@
 import { IconX } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import useFetch from '../hooks/useFetch';
 
-export default function Info({ selected, setSelected = () => { }, menu, setMenu, init = true }) {
-    console.log(selected);
-    console.log(menu);
-    const [initial, setInitial] = useState(init)
+export default function Info({ selected, setSelected = () => { }, setTypeM, typeM, details, area }) {
+
     return (
-        <div id='test' className={`absolute   top-0 bg-white p-12 w-[30vw] h-screen z-50 rounded-l-3xl shadow-2xl text-right duration-500 ${!!selected || menu ? "right-0" : "-right-[30vw]"} `}>
+        <div id='test' className={`absolute   top-0 bg-white p-12 w-[30vw] h-screen z-50 rounded-l-3xl shadow-2xl text-right duration-500 ${typeM > -1 ? "right-0" : "-right-[30vw]"} `}>
 
-            <p className="absolute right-20 top-10 cursor-pointer z-50" onClick={e => { setSelected(null); setMenu(false); setInitial(false) }}>
+            <p className="absolute right-20 top-10 cursor-pointer z-50" onClick={e => { setTypeM(-1); setSelected(null); }}>
                 <IconX color='#80ed99' size={"2rem"} />
             </p>
             {
-                !menu && <div className='h-full'>
-                    {selected?.point
-                        ?
+                typeM > 1 && <div className='h-full'>
+                    {typeM === 3 &&
                         <div className="flex flex-col text-left pt-20 h-full     ">
                             <h1 className="text-4xl font-semibold text-accent pb-1">{selected.event_name}    </h1>
                             <h2 className="text-2xl font-semibold text-accent pb-3">{selected.point_name}    </h2>
@@ -25,15 +23,30 @@ export default function Info({ selected, setSelected = () => { }, menu, setMenu,
                                 <button className="">Close</button>
                             </div>
                         </div>
-                        :
-                        <h1>arr</h1>
+                    }
+                    {typeM === 2 &&
+                        <div className="flex flex-col text-left pt-20 h-full     ">
+                            <h1 className="text-4xl font-semibold text-accent pb-1">{area?.area_name}    </h1>
+                            <h2 className="text-2xl font-semibold text-accent pb-3">{selected.point_name}    </h2>
+                            <p>{selected.desc}</p>
+                            <div>
+                                {details && details.map((detail, i) => (
+                                    <div key={i}>
+                                        <p className="text-lg font-bold">IN {new Date(detail.date).getFullYear()}</p>
+                                        <p>{detail.event_name}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="flex-1  flex justify-end flex-col   ">
+                                <button className="" onClick={e => { setTypeM(-1); setSelected(null) }}>Close</button>
+                            </div>
+                        </div>
                     }
                 </div>
             }
-            {
-                menu &&
+            {typeM < 2 &&
                 <div>
-                    {initial &&
+                    {typeM === 0 &&
                         <div className="flex flex-col absolute top-10 left-10 child:mb-8 text-left h-[90%]">
                             <h1 className="text-3xl text-accent">How does it work?</h1>
                             <p className='text-sm text-gray-400 max-w-[23vw]'>
@@ -47,17 +60,18 @@ export default function Info({ selected, setSelected = () => { }, menu, setMenu,
                                 By clicking on the slider an moving it you will be able to see data or predictions for each year displayed.
                             </p>
                             <div className='flex-1 flex justify-end'>
-                                <button onClick={e => { setSelected(null); setMenu(false); setInitial(false) }} className='w-full h-max mt-auto uppercase text-xl'>Try it out now!</button>
+                                {<button onClick={e => { setSelected(null); setTypeM(-1); }} className='w-full !bg-accent !text-white hover:!text-accent hover:!bg-white h-max mt-auto uppercase text-xl'>Try it out now!</button>}
                             </div>
 
                         </div>
                     }
 
-                    {!initial && <div className="flex flex-col absolute top-40 right-20 child:mb-4 ">
+                    {typeM === 1 && <div className="flex flex-col absolute top-40 right-20 child:mb-4 ">
                         <Link to="/?initial=false" className="text-3xl text-accent">Home</Link>
-                        <h1 className="text-3xl text-accent cursor-pointer" onClick={e => setInitial(true)}>How does it work?</h1>
+                        <h1 className="text-3xl text-accent cursor-pointer" onClick={e => { setTypeM(0) }}>How does it work?</h1>
                         <Link to="/about" className="text-3xl text-accent">About</Link>
                     </div>}
+
                 </div>
             }
 

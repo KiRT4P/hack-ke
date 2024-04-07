@@ -1,8 +1,6 @@
 
 import { useEffect, useState } from "react";
-export default function Slider({ fullWidth = true }) {
-
-    const [sliderValue, setSliderValue] = useState(0);
+export default function Slider({ fullWidth = true, sliderValue, setSliderValue }) {
     const [year, setYear] = useState(1980);
 
     const mapNumRange = (num, inMin, inMax, outMin, outMax) => {

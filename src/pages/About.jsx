@@ -2,16 +2,13 @@ import Info from "../components/Info";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 export default function About() {
-    const [menu, setMenu] = useState(false)
+    const [typeM, setTypeM] = useState(-1)
 
-    const openMenu = () => {
-        setMenu(true)
-    }
 
     return (
         <div className="">
-            <Navbar bar={false} openMenu={openMenu} />
-            <Info menu={menu} setMenu={setMenu} init={false} />
+            <Navbar bar={false} setTypeM={setTypeM} />
+            <Info typeM={typeM} setTypeM={setTypeM} />
             <div className="p-12 txt">
                 <h1 className="text-7xl text-accent font-semibold mb-12">About TerraTherm</h1>
                 <p>

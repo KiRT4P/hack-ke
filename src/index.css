@@ -39,7 +39,7 @@ input[type="text"], input[type="number"],input[type="datetime-local"] input[type
 }
 
 .SVGPARENT > svg{
-  @apply fill-[#BCBCBC] absolute top-0 left-0 !w-[100vw] !h-[100vh]  hover:fill-accent duration-300 pointer-events-none 
+  @apply fill-[#BCBCBC] absolute top-0 left-0 !w-[100vw] !h-[100vh]  hover:fill-secondary duration-300 pointer-events-none 
 }
 
 g{

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { IconMenu2 } from "@tabler/icons-react";
-const Navbar = ({ model, setModel, openMenu, narrow, bar = true }) => {
+const Navbar = ({ model, setModel, setTypeM, narrow, bar = true }) => {
     return (
         <div className='flex justify-center h-20 w-full z-50'>
             <nav className={` w-full h-20 fixed  z- ${bar ? " bg-white " : " "}`} >
@@ -13,8 +13,8 @@ const Navbar = ({ model, setModel, openMenu, narrow, bar = true }) => {
                         <h2 onClick={() => setModel(1)} className={`${model === 1 ? "bg-accent !text-white" : ""}`}>Medium</h2>
                         <h2 onClick={() => setModel(2)} className={`${model === 2 ? "bg-accent !text-white" : ""}`}>Bad</h2>
                     </div>}
-                    <div className="rounded-full p-2 shadow-lg cursor-pointer z-50 bg-white">
-                        <IconMenu2 color='#80ed99' size={"2rem"} onClick={openMenu} />
+                    <div className="rounded-full p-2 shadow-lg cursor-pointer z-50 bg-white" >
+                        <IconMenu2 color='#80ed99' size={"2rem"} onClick={e => setTypeM(1)} />
                     </div>
                 </div>
             </nav >
