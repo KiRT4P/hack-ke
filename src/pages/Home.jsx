@@ -7,18 +7,22 @@ import Info from "../components/Info"
 
 export default function Home() {
     const [selected, setSelected] = useState(null)
-    const [model, setModel] = useState(1)
+    const [model, setModelUS] = useState(1)
 
-    useEffect(() => {
 
-    }, [selected])
+
+    const setModel = (model) => {
+        setModelUS(model)
+        setSelected(null)
+    }
+
 
     return (
         <div className="w-screen h-screen overflow-hidden " >
-            <Navbar model={model} setModel={setModel} />
-            <Map setSelected={setSelected} />
+            <Navbar model={model} setModel={setModel} narrow={!!selected} />
+            <Map setSelected={setSelected} model={model} selected={selected} />
             <Slider fullWidth={!selected} />
-            <Info selected={selected} />
+            <Info selected={selected} setSelected={setSelected} />
         </div>
     )
 

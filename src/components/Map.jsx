@@ -1,24 +1,39 @@
 
 import { useEffect, useState } from "react"
-
-export default function Map({ setSelected }) {
+import useFetch from "../hooks/useFetch"
+import { IconMapPinFilled } from "@tabler/icons-react"
+export default function Map({ setSelected, model, selected }) {
 
     const [partID, setpartID] = useState("0");
-
+    const [mouse, setMouse] = useState({ x: 0, y: 0 });
+    const models = ["SSP1-2.6", "SSP2-4.5", "SSP5-8.5"]
+    const time = 1712444995
+    const { data: event } = useFetch("/api/event", { model: models[model], time })
     return (
-        <div id="parent" className={`select-none relative bg-red-200  `}
+        <div id="parent" className={`select-none relative  `}
 
             onClick={e => {
-                setSelected(e.target.parentElement.parentElement.id);
-                setpartID(e.target.parentElement.parentElement.id)
+                if (true) {
+                    setSelected(e.target.parentElement.parentElement.id);
+                    setpartID(e.target.parentElement.parentElement.id)
+                }
+
             }}
-
+        // onMouseMove={e => {
+        //     setMouse({ x: e.clientX, y: e.clientY - 80 });
+        // }}
         >
-            <div className="absolute size-10 bg-accent" style={{ left: 200, top: 200 }}>
+            {event && event.map((e, i) => (
+                <div onClick={x => { setSelected({ ...e, point: true }); x.stopPropagation() }} key={i} className="POINT duration-500 absolute z-50 hover:scale-125 cursor-pointer " style={{ left: (e.x - 8 + (selected ? 0 : 256)) + "px", top: (e.y - 23) + "px" }}>
+                    <IconMapPinFilled color="#80ed99" className="text-xl" />
+                </div>
+            ))}
 
+            <div className={`absolute duration-500 `} style={{ left: 200 - (selected ? 0 : 256), top: 200 }}>
+                {mouse.x} {mouse.y}
             </div>
 
-            <div className="relative -left-64 -top-20">
+            <div className={`relative  -top-20 SVGPARENT duration-500 ${selected ? "-left-64" : "-left-0"}`}>
 
                 <svg className={`${partID == 1 ? "  !fill-accent   " : ""}`} id="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 980" >
                     <g id="Layer_9" className="">
