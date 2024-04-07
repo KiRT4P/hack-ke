@@ -59,6 +59,12 @@ export default function Map({ setSelected, model, setTypeM, typeM, event }) {
                     <IconMapPinFilled color="#ff7a72" size={'2.5rem'} />
                 </div>
             ))}
+            <div>
+                <div className="absolute h-screen w-screen  pointer-events-none"> 
+                    <img src="/Group_6.png" alt="" className="bottom-40 left-10 absolute" />
+                </div>
+            </div>
+            
 
             <div className={`absolute duration-500 `} style={{ left: 300 - (typeM > -1 ? 0 : 256), top: 200 }}>
                 {mouse.x} {mouse.y}
