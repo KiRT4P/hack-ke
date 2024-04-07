@@ -70,7 +70,7 @@ export default function Home() {
     return (
         <div className="w-screen h-screen overflow-hidden " >
             <Navbar model={model} setModel={setModel} narrow={typeM !== -1} setTypeM={setTypeM} />
-            <Map setSelected={setSelected} model={model} selected={selected} setTypeM={setTypeM} typeM={typeM} event={event} />
+            <Map setSelected={setSelected} model={model} selected={selected} setTypeM={setTypeM} typeM={typeM} event={event} time={time} />
             <Slider fullWidth={typeM === -1} sliderValue={sliderValue} setSliderValue={setSliderValue} />
             <Info details={details} area={area} typeM={typeM} setTypeM={setTypeM} model={model} selected={selected} setSelected={setSelected} init={searchParamas.get("initial") !== 'false'} />
         </div>

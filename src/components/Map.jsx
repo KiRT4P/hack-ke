@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import useFetch from "../hooks/useFetch"
 import { IconMapPinFilled } from "@tabler/icons-react"
-export default function Map({ setSelected, model, setTypeM, typeM, event }) {
+export default function Map({ setSelected, model, setTypeM, typeM, event, time }) {
 
     const [partID, setpartID] = useState("0");
     const [mouse, setMouse] = useState({ x: 0, y: 0 });
@@ -10,9 +10,9 @@ export default function Map({ setSelected, model, setTypeM, typeM, event }) {
 
     const calculateColor = (d) => {
         // Map the temperature range [-5, 15] to the color range [light blue, bright red]
-        const r = mapRange(d.temp, -2, 35, 144, 0);
-        const g = mapRange(d.temp, -2, 35, 238, 100);
-        const b = mapRange(d.temp, -2, 35, 144, 0);
+        const r = mapRange(d.temp, -5, 45, 144, 0);
+        const g = mapRange(d.temp, -5, 45, 238, 100);
+        const b = mapRange(d.temp, -5, 45, 144, 0);
 
         //   setColor(`rgb(${r}, ${g}, ${b})`);
         document.getElementById(d.area_id).style.fill = `rgb(${r}, ${g}, ${b})`;
@@ -26,12 +26,15 @@ export default function Map({ setSelected, model, setTypeM, typeM, event }) {
 
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_TARGET + "/api/avrg_temps?model=" + models[model] + '&year=' + 2020)
+        console.log(models[model]);
+        console.log((new Date(time * 1000).getFullYear()));
+        fetch(process.env.REACT_APP_TARGET + "/api/avrg_temps?model=" + models[model] + '&year=' + (new Date(time * 1000).getFullYear()))
             .then(response => response.json())
             .then(data => {
                 data.forEach(d => {
                     calculateColor(d);
                 })
+                console.log(data);
                 // setTemperature(data);
                 // if(document.getElementById(data[0].area_id)){
                 //     document.getElementById(data[0].area_id).children[0].style.fill = "#000";
