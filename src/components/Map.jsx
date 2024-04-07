@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import useFetch from "../hooks/useFetch"
 import { IconMapPinFilled } from "@tabler/icons-react"
-export default function Map({ setSelected, model, selected }) {
+export default function Map({ setSelected, model, selected, menu }) {
 
 
     const [partID, setpartID] = useState("0");
@@ -26,17 +26,17 @@ export default function Map({ setSelected, model, selected }) {
             }}
         >
             {event && event.map((e, i) => (
-                <div onClick={x => { setSelected({ ...e, point: true }); x.stopPropagation() }} key={i} className="POINT duration-500 absolute z-50 hover:scale-125 cursor-pointer " style={{ left: (e.x - 8 + (selected ? 0 : 256)) + (window.outerWidth / 1536) + "px", top: (e.y) * (window.outerHeight / 816) - 23 + "px" }}>
+                <div onClick={x => { setSelected({ ...e, point: true }); x.stopPropagation() }} key={i} className="POINT duration-500 absolute z-50 hover:scale-125 cursor-pointer " style={{ left: (e.x - 8 + (selected || menu ? 0 : 256)) + (window.outerWidth / 1536) + "px", top: (e.y) * (window.outerHeight / 816) - 23 + "px" }}>
                     <IconMapPinFilled color="#80ed99" className="text-xl" />
                 </div>
             ))}
 
-            <div className={`absolute duration-500 `} style={{ left: 200 - (selected ? 0 : 256), top: 200 }}>
+            <div className={`absolute duration-500 `} style={{ left: 200 - (selected || menu ? 0 : 256), top: 200 }}>
                 {mouse.x} {mouse.y}
             </div>
             <p className="absolute">{1482} {window.outerWidth}, {window.outerWidth / 1536}</p>
             <p className="absolute top-5">{816} {window.outerHeight}, {window.outerHeight / 816}</p>
-            <div className={`relative  -top-20 SVGPARENT duration-500 ${selected ? "-left-64" : "-left-0"}`}>
+            <div className={`relative  -top-20 SVGPARENT duration-500 ${selected || menu ? "-left-64" : "-left-0"}`}>
 
                 <svg className={`${partID == 1 ? "  !fill-accent   " : ""}`} id="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 980" >
                     <g id="Layer_9" className="">
