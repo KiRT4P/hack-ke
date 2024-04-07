@@ -11,6 +11,40 @@ export default function Map({ setSelected, model, selected, menu }) {
     const time = 1712444995
     console.log(1482, window.innerHeight, 1482 / window.innerWidth);
     const { data: event } = useFetch("/api/event", { model: models[model], time })
+
+    const calculateColor = (d) => { 
+      // Map the temperature range [-5, 15] to the color range [light blue, bright red]
+      const r = mapRange(d.temp, -2, 35, 144, 0);
+      const g = mapRange(d.temp, -2, 35, 238, 100);
+      const b = mapRange(d.temp, -2, 35, 144, 0);
+      
+    //   setColor(`rgb(${r}, ${g}, ${b})`);
+    document.getElementById(d.area_id).children[0].style.fill = `rgb(${r}, ${g}, ${b})`;
+    console.log(d.area_id);
+  };
+    
+    // Helper function to map a value from one range to another
+    const mapRange = (value, low1, high1, low2, high2) => {
+        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+    };
+    
+
+    useEffect(() => {
+        fetch(process.env.REACT_APP_TARGET + "/api/avrg_temps?model=" +  models[model] + '&year=' + 2020)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(d => {
+                calculateColor(d);
+            })
+            // setTemperature(data);
+            // if(document.getElementById(data[0].area_id)){
+            //     document.getElementById(data[0].area_id).children[0].style.fill = "#000";
+            //     console.log(document.getElementById(data.area_id).children[0]);
+            // }
+        })
+        .catch(error => console.error('Error:', error));
+    }, [model]);
+
     return (
         <div id="parent" className={`select-none relative  `}
 
@@ -21,9 +55,9 @@ export default function Map({ setSelected, model, selected, menu }) {
                 }
 
             }}
-            onMouseMove={e => {
-                setMouse({ x: e.clientX, y: e.clientY - 80 });
-            }}
+            // onMouseMove={e => {
+            //     setMouse({ x: e.clientX, y: e.clientY - 80 });
+            // }}
         >
             {event && event.map((e, i) => (
                 <div onClick={x => { setSelected({ ...e, point: true }); x.stopPropagation() }} key={i} className="POINT duration-500 absolute z-50 hover:scale-125 cursor-pointer " style={{ left: (e.x - 8 + (selected || menu ? 0 : 256)) + (window.outerWidth / 1536) + "px", top: (e.y) * (window.outerHeight / 816) - 23 + "px" }}>
@@ -32,10 +66,10 @@ export default function Map({ setSelected, model, selected, menu }) {
             ))}
 
             <div className={`absolute duration-500 `} style={{ left: 200 - (selected || menu ? 0 : 256), top: 200 }}>
-                {mouse.x} {mouse.y}
+                
             </div>
-            <p className="absolute">{1482} {window.outerWidth}, {window.outerWidth / 1536}</p>
-            <p className="absolute top-5">{816} {window.outerHeight}, {window.outerHeight / 816}</p>
+            {/* <p className="absolute">{1482} {window.outerWidth}, {window.outerWidth / 1536}</p> */}
+            {/* <p className="absolute top-5">{816} {window.outerHeight}, {window.outerHeight / 816}</p> */}
             <div className={`relative  -top-20 SVGPARENT duration-500 ${selected || menu ? "-left-64" : "-left-0"}`}>
 
                 <svg className={`${partID == 1 ? "  !fill-accent   " : ""}`} id="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 980" >
