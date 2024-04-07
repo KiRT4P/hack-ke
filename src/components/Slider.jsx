@@ -20,7 +20,7 @@ export default function Slider({ fullWidth = true }) {
                     <div className="absolute -bottom-8">1980</div>
                 </div>
 
-                <div className={`absolute normal-nums border-accent border-2 rounded-lg px-2 py-1 z-50 -top-8 ${(sliderValue == 0 || sliderValue == 100) ? "hidden" : ""}`} style={{ left: mapNumRange(sliderValue, 0, 100, 0, 95) + (0) + '%' }} > {year}</div>
+                <div className={`absolute normal-nums border-accent border-2 rounded-lg px-2 py-1 z-50 -top-8 ${(sliderValue == 0 || sliderValue == 100) ? "hidden" : ""}`} style={{ left: mapNumRange(sliderValue, 0, 100, 0, 95) + (0.2) + '%' }} > {year}</div>
                 <input type="range" className="bg-transparent" value={sliderValue}
                     onChange={(e) => {
                         setSliderValue(e.target.value);

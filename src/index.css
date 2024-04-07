@@ -46,6 +46,11 @@ g{
   @apply child:pointer-events-auto 
 }
 
+.txt > p {
+  @apply text-gray-400 w-1/2 pb-8 text-sm
+
+}
+
 
 /*#region input range */
 input[type=range] {

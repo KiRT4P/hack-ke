@@ -4,6 +4,7 @@ import useFetch from "../hooks/useFetch"
 import { IconMapPinFilled } from "@tabler/icons-react"
 export default function Map({ setSelected, model, selected }) {
 
+
     const [partID, setpartID] = useState("0");
     const [mouse, setMouse] = useState({ x: 0, y: 0 });
     const models = ["SSP1-2.6", "SSP2-4.5", "SSP5-8.5"]
@@ -20,9 +21,9 @@ export default function Map({ setSelected, model, selected }) {
                 }
 
             }}
-        // onMouseMove={e => {
-        //     setMouse({ x: e.clientX, y: e.clientY - 80 });
-        // }}
+            onMouseMove={e => {
+                setMouse({ x: e.clientX, y: e.clientY - 80 });
+            }}
         >
             {event && event.map((e, i) => (
                 <div onClick={x => { setSelected({ ...e, point: true }); x.stopPropagation() }} key={i} className="POINT duration-500 absolute z-50 hover:scale-125 cursor-pointer " style={{ left: (e.x - 8 + (selected ? 0 : 256)) + (window.outerWidth / 1536) + "px", top: (e.y) * (window.outerHeight / 816) - 23 + "px" }}>
